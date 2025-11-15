@@ -1,0 +1,18 @@
+### fgggdf
+
+GET  http://localhost:3000
+
+
+### crear una tarea
+POST http://localhost:3000
+Content-Type: application/json
+
+ {
+    "task_description": "Organizar escritorio",
+    "task_title": "Escritorio",
+    "task_situation": false
+  }
+### esta es para borrar
+GET  http://localhost:3000/Hacer manana
+// ya funciona
+

@@ -1,0 +1,48 @@
+
+[
+  {
+    "task_description": "Cocinar desayuno",
+    "task_title": "Desayuno",
+    "task_situation": true
+  },
+  {
+    "task_description": "Lavar ropa",
+    "task_title": "Lavar ropa",
+    "task_situation": false
+  },
+  {
+    "task_description": "Salir al supermercado",
+    "task_title": "Supermercado",
+    "task_situation": false
+  },
+  {
+    "task_description": "Hacer ejercicio",
+    "task_title": "Ejercicio",
+    "task_situation": true
+  },
+  {
+    "task_description": "Estudiar JavaScript",
+    "task_title": "Estudio JS",
+    "task_situation": false
+  },
+  {
+    "task_description": "Limpiar la casa",
+    "task_title": "Limpieza",
+    "task_situation": false
+  },
+  {
+    "task_description": "Preparar almuerzo",
+    "task_title": "Almuerzo",
+    "task_situation": true
+  },
+  {
+    "task_description": "Leer un libro",
+    "task_title": "Lectura",
+    "task_situation": false
+  },
+  {
+    "task_description": "Organizar escritorio",
+    "task_title": "Escritorio",
+    "task_situation": false
+  }
+]
