@@ -52,10 +52,30 @@ export class db_model{
    [task_description,task_title,task_situation]
     )
       if(result === null){
-        console.log("hubo un error")
+        console.log("there is a mistake")
       }
     console.log(result)
   }
+
+  static async delete(title){
+   const [tasks] = await pool.query(`SELECT * FROM tareas WHERE task_title = ?` , [title]);
+
+   if(tasks.length === 0 ){
+       return null
+  } else {
+      console.log(tasks[0])
+  }
+
+   const erased = await pool.query( `DELETE FROM tareas WHERE task_title = ?` , [title]);
+
+  if(erased === null){
+    console.log("there is an error")
+  } else {
+    return console.log("you deleted the task" , tasks )
+  }
+  
+  }
+
 }
 
         

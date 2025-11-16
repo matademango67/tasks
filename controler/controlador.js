@@ -35,6 +35,16 @@ export class db_controller{
   }
 
 
+  static async delete(req,res){
+    const {title} = req.params
+    console.log("Buscando tarea con título:", title)
+    const tareas = await db_model.delete(title)
+   if(tareas === null){
+    return  res.status(404).json({message: "Tarea no encontrada"})
+   }
+  }
+
+
 }
 
 
