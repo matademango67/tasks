@@ -1,4 +1,5 @@
  import mysql from 'mysql2/promise';
+import { boolean } from 'zod';
 
  const pool = mysql.createPool({
     host:"127.0.0.1",
@@ -63,19 +64,36 @@ export class db_model{
    if(tasks.length === 0 ){
        return null
   } else {
-      console.log(tasks[0])
+      console.log("Task found")
   }
 
    const erased = await pool.query( `DELETE FROM tareas WHERE task_title = ?` , [title]);
 
   if(erased === null){
-    console.log("there is an error")
+    console.log("task not found")
   } else {
     return console.log("you deleted the task" , tasks )
   }
   
   }
 
-}
+  static async update(title , task_description , task_title , task_situation){
+   const [tasks] = await pool.query(`SELECT * FROM tareas WHERE task_title = ?` , [title])
+  
+  if(tasks.length === 0 ){
+       return null
+  } else {
+      console.log("Task found")
+  }  
 
-        
+  const update = await pool.query('UPDATE tareas SET task_description = ? , task_title = ?, task_situation = ? WHERE task_title = ?',
+   [task_description , task_title , task_situation , title])
+   
+  if(update === null){
+    console.log("task not found")
+  } else {
+    return console.log("you updated this task" , tasks )
+  }
+
+  }
+}

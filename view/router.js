@@ -8,6 +8,4 @@ TaskRouter.get('/', db_controller.getTasks)
 TaskRouter.post('/',db_controller.create )
 TaskRouter.delete('/:title', db_controller.delete )
 TaskRouter.get('/:title', db_controller.getByTitle)
-
-
- //Task_controller.create,
+TaskRouter.patch('/:title', db_controller.update)
