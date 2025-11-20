@@ -20,11 +20,11 @@ GET  http://localhost:3000
 DELETE http://localhost:3000/Escritorio
 
 ### this is for updating a task
-PATCH  http://localhost:3000/Escritorio roto
+PATCH  http://localhost:3000/Escritorial
 Content-Type: application/json
 
  {
-    "task_description": "romper el escritorio",
-    "task_title": "Escritorial",
-    "task_situation": false
+    "task_description": "s",
+    "task_title": "A",
+    "task_situation": true
   }

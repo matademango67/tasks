@@ -31,7 +31,9 @@ export class db_controller{
     }
                 
     const Nueva_tarea = await db_model.create({input: result.data})
-    res.status(201).json(Nueva_tarea)
+    res.status(201).json({
+    message: "Task created successfully",
+    task: Nueva_tarea})
   }
 
 
@@ -59,6 +61,8 @@ export class db_controller{
     if(tareas === null){
     return  res.status(404).json({message: "Task not found"})
    }
+    res.status(201).json({message : "Task " + title + " updated successfully"})
+  
 
   }
 

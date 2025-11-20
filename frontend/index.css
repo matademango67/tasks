@@ -1,0 +1,58 @@
+
+h1{
+   font-size: 60px;
+    color: rgb(232 255 1);
+    display: flex;
+    justify-content: center;
+}
+
+h2{
+    font-size: 50px;
+    color: white;
+}
+
+.Show-tasks{
+    display: flex;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #11acf3;
+}
+
+.buttons{
+  display: flex;
+  gap: 12px;
+}
+
+.btn {
+  padding: 12px 22px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s ease;
+  color: white;
+}
+
+.btn-create{
+  background: #2196F3;
+}
+
+.btn-update{
+  background: #FF9800
+}
+.btn-delete{
+  background: #E53935
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  filter: brightness(1.15);
+}
+
+/* Click animation */
+.btn:active {
+  transform: scale(0.97);
+}
