@@ -27,7 +27,13 @@ export class db_controller{
      const result = Validar_Tarea(req.body)
                 
     if (!result.success) {
-    return res.status(400).json({ error: result.error }) 
+    return res.status(400).json({ message: "you put something invalid" }) 
+    }
+
+    const existTask = await db_model.getByTitle(req.body.task_title);
+
+    if (existTask) {
+      return res.status(409).json({ message: "Task with this title already exists" });
     }
                 
     const Nueva_tarea = await db_model.create({input: result.data})
@@ -42,6 +48,7 @@ export class db_controller{
     console.log("Searching for task with the title of :", title)
     const tareas = await db_model.delete(title)
    if(tareas === null){
+    console.log("Task " + title + " is not found")
     return  res.status(404).json({message: "Task not found"})
    }
     res.status(201).json({message : "Task deleted successfully"})
@@ -50,7 +57,7 @@ export class db_controller{
   static async update(req,res){
     const result = Validar_Tarea(req.body)
      if (!result.success) {
-    return res.status(400).json({ error: result.error }) 
+    return res.status(400).json({ message: "you put something invalid" }) 
     }
 
     const {title} = req.params
@@ -62,7 +69,6 @@ export class db_controller{
     return  res.status(404).json({message: "Task not found"})
    }
     res.status(201).json({message : "Task " + title + " updated successfully"})
-  
 
   }
 
