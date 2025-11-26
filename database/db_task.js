@@ -1,14 +1,13 @@
  import mysql from 'mysql2/promise';
-import { boolean } from 'zod';
 
  const pool = mysql.createPool({
-    host:"127.0.0.1",
-    port: 3306,
-    password:"12345678910",
-    user: "root",
-    database : "tasks"
- }) 
-
+  host: "ballast.proxy.rlwy.net",
+  port: 16041,
+  user: "root",
+  password: "fzepeoRugzrOYOhYCJgPjXLOYkdCPMJE",
+  database: "railway"
+});
+  
  
 export default pool;
 

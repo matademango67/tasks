@@ -17,7 +17,7 @@ GET  http://localhost:3000
 
 ### this is for deleting an especific task with the title
 
-DELETE http://localhost:3000/Escritorio
+DELETE http://localhost:3000/Escritori
 
 ### this is for updating a task
 PATCH  http://localhost:3000/Escritorial
