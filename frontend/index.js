@@ -1,3 +1,4 @@
+const API_URL = "tasks-production-7ccf.up.railway.app";
 const Create_btn = document.querySelector('.btn-create');
 let Update_btn = document.querySelector('.btn-update')
 let Delete_btn = document.querySelector('.btn-delete')
@@ -6,8 +7,9 @@ let description ;
 let situation ;
 let situationBool;
 
+
 async function getTasks() {
-  const response = await fetch('http://localhost:3000'); // tu ruta GET
+  const response = await fetch(API_URL); // tu ruta GET
   const data = await response.json();  // convierte la respuesta a JSON
   return data;
 }
@@ -44,7 +46,7 @@ showTasks();
 async function create(input) {
   
 
-   const res = await fetch("http://localhost:3000", {
+   const res = await fetch(API_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(input)
@@ -94,7 +96,7 @@ Create_btn.addEventListener('click', () =>{
 })
 
 async function delete_task(title){
-    const response = await fetch('http://localhost:3000' + '/' + title, {
+    const response = await fetch(API_URL + '/' + title, {
         method: 'DELETE'
     });
     const data = await response.json();
@@ -140,7 +142,7 @@ if (answer.trim().toLowerCase() === "yes") {
 
 
 async function change_task(title,info){
-    const response = await fetch('http://localhost:3000' + '/' + title, {
+    const response = await fetch(API_URL + '/' + title, {
         method: 'PATCH',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(info)

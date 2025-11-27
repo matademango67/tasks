@@ -1,5 +1,5 @@
 import express, { json } from 'express'
-import { tasks } from "./model/model.js"
+//import { tasks } from "./model/model.js"
 import { TaskRouter } from "./view/router.js"
 import cors from "cors"
 import path from 'path'
