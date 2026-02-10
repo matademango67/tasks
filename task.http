@@ -24,7 +24,7 @@ PATCH  http://localhost:3000/Escritorial
 Content-Type: application/json
 
  {
-    "task_description": "s",
-    "task_title": "A",
+    "task_description": "Leer un libro",
+    "task_title": "Lectura",
     "task_situation": true
   }

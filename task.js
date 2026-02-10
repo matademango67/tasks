@@ -1,5 +1,4 @@
 import express, { json } from 'express'
-//import { tasks } from "./model/model.js"
 import { TaskRouter } from "./view/router.js"
 import path from 'path'
 
@@ -24,3 +23,5 @@ app.use(TaskRouter)
 const __dirname = path.resolve();
 
 app.use(express.static(path.join(__dirname, "frontend")));
+
+export default app

@@ -1,12 +1,10 @@
-import { Validar_Tarea } from "../model/zod.js"
-import { Las_Task , tasks ,  } from "../model/model.js"
-import {db_model} from "../database/db_task.js";
-import  pool  from "../database/db_task.js";
+import { Validar_Tarea } from "../middleware/zod.js"
+import {db_model} from "../model/db_model.js";
 
 export class db_controller{
     static async  getTasks (req, res) {
   try {
-    const [rows] = await pool.query("SELECT * FROM tareas");
+    const rows = await db_model.getTasks()
     res.json(rows);
   } catch (error) {
     console.error(error);
@@ -27,7 +25,7 @@ export class db_controller{
      const result = Validar_Tarea(req.body)
                 
     if (!result.success) {
-    return res.status(400).json({ message: "you put something invalid" }) 
+    return res.status(400).json({ message: "Bad request" }) 
     }
 
     const existTask = await db_model.getByTitle(req.body.task_title);
@@ -50,8 +48,9 @@ export class db_controller{
    if(tareas === null){
     console.log("Task " + title + " is not found")
     return  res.status(404).json({message: "Task not found"})
+   } else {
+      res.status(200).json({message : "Task deleted successfully"})
    }
-    res.status(201).json({message : "Task deleted successfully"})
   }
 
   static async update(req,res){
@@ -75,31 +74,3 @@ export class db_controller{
 
 }
 
-
-export class Task_controller {
-    static async getAll (req,res){
-        res.json(tasks)
-    }
-
-    static async create (req,res){
-      const result = Validar_Tarea(req.body)
-
-      if(!result.success){
-         return res.status(400).json({ error: result.error }) 
-      }
-
-       const New_Task = await Las_Task.create({input: result.data})
-       res.status(201).json(New_Task)
-    }
-
-    
-
-    static async delete (req,res){ 
-       const  { title } = req.params  
-        if( !title){
-          res.status(404).json({message : "no se encuentra la tarea"})
-        } else {
-            res.status(201).json({message : "tarea eliminada con exito"})
-        }
-    }
-}
