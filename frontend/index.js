@@ -1,4 +1,4 @@
-const API_URL = "https://tasks-production-7ccf.up.railway.app";
+const API_URL = "http://localhost:3000";
 const Create_btn = document.querySelector('.btn-create');
 let Update_btn = document.querySelector('.btn-update')
 let Delete_btn = document.querySelector('.btn-delete')

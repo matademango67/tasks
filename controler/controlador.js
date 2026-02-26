@@ -61,16 +61,20 @@ export class db_controller{
 
     const {title} = req.params
     const { task_description , task_title , task_situation } = result.data
+    const existTask = await db_model.getByTitle(req.body.task_title);
     console.log("Searching for task with the title of:", title)
+ 
     const tareas = await db_model.update(title, task_description , task_title , task_situation)
 
     if(tareas === null){
     return  res.status(404).json({message: "Task not found"})
    }
+    if (existTask && existTask.task_title !== title) {
+      return res.status(409).json({ message: "Task with this title already exists" });
+    }
+    
     res.status(201).json({message : "Task " + title + " updated successfully"})
-
+   
   }
-
-
 }
 

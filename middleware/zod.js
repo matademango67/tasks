@@ -7,7 +7,7 @@ const Task_eschema = z.object({
         invalid_type_error: 'El titulo debe ser una cadena de texto',
         require_error: 'Necesita un titulo',
      })
-        .min (1, "La descripción no puede estar vacía")
+        .min (5, "La descripción no puede estar vacía")
         .max(110, "La descripción no puede tener más de 110 caracteres"),
     
 
@@ -16,7 +16,7 @@ const Task_eschema = z.object({
       invalid_type_error: "El título debe ser una cadena de texto",
       required_error: "Necesita un título"
     })
-    .min(1, "El título no puede estar vacío")
+    .min(3, "El título no puede estar vacío")
     .max(50, "El título no puede tener más de 50 caracteres"),
     
     task_situation: z.boolean({
