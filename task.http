@@ -18,21 +18,11 @@ Content-Type: application/json
 GET  http://localhost:3000/Hacer manana
 
 ### update task
-PATCH  http://localhost:3000/Desayuno
+PATCH  http://localhost:3000/Supermercados
 Content-Type: application/json
 
  {
     "task_description": "Leer un libro",
-    "task_title": "Lecturas",
+    "task_title": "Supermercado",
     "task_situation": true
   } 
-
-### sdsd
-PATCH http://localhost:3000/Almuerzo
-Content-Type: application/json
-
-    {
-    "task_description": "esto es para probar el update",
-    "task_title": "actualixacion de tarea",
-    "task_situation": true
-        }

@@ -61,19 +61,39 @@ export class db_controller{
 
     const {title} = req.params
     const { task_description , task_title , task_situation } = result.data
-    const existTask = await db_model.getByTitle(req.body.task_title);
     console.log("Searching for task with the title of:", title)
- 
-    const tareas = await db_model.update(title, task_description , task_title , task_situation)
+   
+    try {
 
-    if(tareas === null){
-    return  res.status(404).json({message: "Task not found"})
-   }
-    if (existTask && existTask.task_title !== title) {
-      return res.status(409).json({ message: "Task with this title already exists" });
+      const tareas = await db_model.update(
+        title,
+        task_description,
+        task_title,
+        task_situation
+    );
+      if(tareas === null){
+    return  res.status(404).json(
+      {message: "Task not found"
+      });
     }
-    
-    res.status(201).json({message : "Task " + title + " updated successfully"})
+
+        return res.status(201).json({
+            message : "Task " + title + " updated successfully"
+        });
+
+    } catch (error) {
+
+        if (error.code === "ER_DUP_ENTRY") {
+            return res.status(409).json({
+                message: "A task with that title already exists"
+            });
+        }
+
+        console.error(error);
+        return res.status(500).json({
+            message: "Internal server error"
+        });
+    }
    
   }
 }

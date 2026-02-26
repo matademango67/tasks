@@ -1,0 +1,4 @@
+const Roles = {
+    admin,
+    user
+}

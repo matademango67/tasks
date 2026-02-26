@@ -27,10 +27,10 @@ describe('Update', () => {
 
    it('should throw an error since the title is repeated', async () => {
         const res = await request(app)
-        .patch('/Almuerzo')
+        .patch('/actualixacion de tarea')
         .send({
           "task_description": "deberia dar error",
-          "task_title": "actualixacion de tarea",
+          "task_title": "Limpieza",
             "task_situation": false
         })
         expect(res.status).toBe(409)
