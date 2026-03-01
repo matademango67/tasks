@@ -1,0 +1,8 @@
+### register route 
+POST  http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+    "email": "baladababa@gmail.com" ,
+    "password": "123456"
+}

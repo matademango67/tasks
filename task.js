@@ -1,5 +1,6 @@
 import express, { json } from 'express'
 import { TaskRouter } from "./view/router.js"
+import { UserRouter } from "./view/router_user.js"
 import path from 'path'
 
 import dotenv from "dotenv";
@@ -18,7 +19,8 @@ app.listen(PORT, () => {
     console.log("Server is running on port 3000")
 })
 
-app.use(TaskRouter) 
+app.use(TaskRouter)
+app.use('/auth', UserRouter) 
 
 const __dirname = path.resolve();
 
