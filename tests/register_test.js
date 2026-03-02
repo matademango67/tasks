@@ -18,7 +18,7 @@ describe('/auth' ,() => {
         const register = await request (app)
         .post('/auth/register')
         .send({
-            "email": "alaa@gmail.com",
+            "email": "aalasaas@gmail.com",
             "password": "123456"
         })
         expect(register.status).toBe(201)
@@ -26,7 +26,7 @@ describe('/auth' ,() => {
 
     it('should throw an error due to a bad request' , async () => {
         const register = await request(app)
-        .post('/auuth/register')
+        .post('/auth/register')
         .send({
             "email" : "saassda@gmail.com"
         })

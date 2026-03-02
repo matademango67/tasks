@@ -7,13 +7,16 @@ import { generateRefreshToken } from "../config/refreshToken.js";
 
 const saltrounds = Number(process.env.BCRYPT_SALT_ROUNDS.trim())
 
-const mistake = new Error('email already exists');
+
 
 export class Auth_model{
    
     static async register(email , password){
+      
     const hashedpassword = await bcrypt.hash(password , saltrounds )
     const user_id = crypto.randomUUID()
+     
+    const mistake = new Error('email already exists');
 
     const query = 
     `INSERT INTO users (user_id , user_email , user_role , user_password)
@@ -43,7 +46,7 @@ export class Auth_model{
 }
 
  static async login (email , password){
-      const error = new Error('Invalid credentials')
+      const mistake = new Error('Invalid credentials')
       error.statusCode = 401
 
       const query =
@@ -53,11 +56,11 @@ export class Auth_model{
       const [rows] = pool.execute(query , [email])
 
       if(rows === 0){
-        throw error
+        throw mistake
       }
 
       const Isvalid = bcrypt.compare(password , user.user_password)
-      if(!Isvalid) throw error
+      if(!Isvalid) throw mistake
 
       const accessToken = jwt.sign(
         {email : user_email, id : user_id, role : user_role },
