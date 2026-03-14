@@ -3,11 +3,9 @@ import  bcrypt  from "bcrypt"
 import { Roles } from "../config/Roles.js";
 import { pool } from '../database/db_task.js'
 import { generateRefreshToken } from "../config/refreshToken.js";
-//import { TokenService } from "./token_services.js";
+import { Token_model } from "./token_model.js";
 
 const saltrounds = Number(process.env.BCRYPT_SALT_ROUNDS.trim())
-
-
 
 export class Auth_model{
    
@@ -47,28 +45,30 @@ export class Auth_model{
 
  static async login (email , password){
       const mistake = new Error('Invalid credentials')
-      error.statusCode = 401
+      mistake.statusCode = 401
 
       const query =
       `SELECT user_id,user_role,user_password FROM users 
       WHERE user_email = ? `
 
-      const [rows] = pool.execute(query , [email])
+      const [rows] = await pool.execute(query , [email])
 
-      if(rows === 0){
+      if(rows.length === 0){
         throw mistake
       }
 
-      const Isvalid = bcrypt.compare(password , user.user_password)
+      const user = rows[0]
+      const Isvalid = await bcrypt.compare(password , user.user_password)
       if(!Isvalid) throw mistake
 
       const accessToken = jwt.sign(
-        {email : user_email, id : user_id, role : user_role },
+        {email : email, id : user.user_id, role : user.user_role },
         process.env.signature,
         {expiresIn : '15m'}
       )
    
       const refreshToken = generateRefreshToken()
+      await Token_model.save_token(user.user_id , refreshToken)
 
       return {accessToken , refreshToken}
  }

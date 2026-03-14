@@ -1,17 +1,17 @@
 import {z} from 'zod';
 
  const userSchema = z.object({
-  user_email: z
+  email: z
     .string()
     .email("Invalid email format")
     .max(150, "Email too long"),
 
-  user_role: z
+  role: z
     .string()
     .max(20)
     .default("user"),
 
-  user_password: z
+  password: z
     .string()
     .min(8, "Password must be at least 8 characters")
     .max(255)

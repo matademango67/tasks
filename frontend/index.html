@@ -1,28 +1,130 @@
- <html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasker</title>
+    <title>Tasker - Task Management App</title>
     <link rel="stylesheet" href="index.css">
-    <script src="../task.js"></script>
 </head>
 
 <body>
-    <h1>These are your tasks</h1>
+    <!-- REGISTER SECTION - Initially visible -->
+    <div id="register-section" class="section-active">
+        <div class="auth-card">
+            <h1 class="auth-title">Tasker</h1>
+            <p class="auth-subtitle">Create Your Account</p>
+            
+            <form id="register-form" class="auth-form">
+                <!-- Email input -->
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input 
+                        type="email" 
+                        id="register-email" 
+                        placeholder="Enter your email" 
+                        required
+                    >
+                </div>
 
-    <div class="Show-tasks">
-         <h2>Your tasks</h2>
-         <h3></h3>
-        <li id="task-list"></li>
+                <!-- Password input -->
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <input 
+                        type="password" 
+                        id="register-password" 
+                        placeholder="Create a password" 
+                        required
+                    >
+                </div>
+
+                <!-- Confirm Password input -->
+                <div class="form-group">
+                    <label for="register-confirm-password">Confirm Password</label>
+                    <input 
+                        type="password" 
+                        id="register-confirm-password" 
+                        placeholder="Confirm your password" 
+                        required
+                    >
+                </div>
+
+                <!-- Error message display -->
+                <div id="register-error" class="error-message"></div>
+
+                <!-- Register button -->
+                <button type="submit" class="btn btn-auth">Create Account</button>
+            </form>
+
+            <p class="auth-footer">
+                Already have an account? 
+                <a href="#" id="to-login-link" class="auth-link">Login here</a>
+            </p>
+        </div>
     </div>
 
-    <div class="buttons">
-          <button class="btn btn-create">Create</button>
-          <button class="btn btn-update">Update</button>
-          <button class="btn btn-delete">Delete</button>
+    <!-- LOGIN SECTION - Initially hidden -->
+    <div id="login-section" class="section-hidden">
+        <div class="auth-card">
+            <h1 class="auth-title">Tasker</h1>
+            <p class="auth-subtitle">Welcome Back</p>
+            
+            <form id="login-form" class="auth-form">
+                <!-- Email input -->
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input 
+                        type="email" 
+                        id="login-email" 
+                        placeholder="Enter your email" 
+                        required
+                    >
+                </div>
+
+                <!-- Password input -->
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input 
+                        type="password" 
+                        id="login-password" 
+                        placeholder="Enter your password" 
+                        required
+                    >
+                </div>
+
+                <!-- Error message display -->
+                <div id="login-error" class="error-message"></div>
+
+                <!-- Login button -->
+                <button type="submit" class="btn btn-auth">Login</button>
+            </form>
+
+            <p class="auth-footer">
+                Don't have an account? 
+                <a href="#" id="to-register-link" class="auth-link">Register here</a>
+            </p>
+        </div>
     </div>
+
+    <!-- TASKS SECTION - Initially hidden, shown after login -->
+    <div id="tasks-section" class="section-hidden">
+        <div class="tasks-header">
+            <h1>Your Tasks</h1>
+            <button class="btn btn-logout">Logout</button>
+        </div>
+
+        <div class="show-tasks">
+            <h2>Active Tasks</h2>
+            <ul id="task-list"></ul>
+        </div>
+
+        <div class="buttons">
+            <button class="btn btn-create">Create</button>
+            <button class="btn btn-update">Update</button>
+            <button class="btn btn-delete">Delete</button>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
 </body>
 
-<script src="index.js"></script>
 </html>

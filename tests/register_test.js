@@ -3,13 +3,13 @@ import app from '../task.js'
 
 
 
-describe('/auth' ,() => {
+describe('/register' ,() => {
     it('should give an error due to the email already exists' , async () =>{
         const register = await request (app)
         .post('/auth/register')
         .send({
              "email": "baladababa@gmail.com" ,
-             "password": "123456"
+             "password": "123456789"
         })
         expect(register.status).toBe(409)
     })
@@ -18,8 +18,8 @@ describe('/auth' ,() => {
         const register = await request (app)
         .post('/auth/register')
         .send({
-            "email": "aalasaas@gmail.com",
-            "password": "123456"
+            "email": "a1a1lasaas3@gmail.com",
+            "password": "123456888"
         })
         expect(register.status).toBe(201)
     })
@@ -28,7 +28,17 @@ describe('/auth' ,() => {
         const register = await request(app)
         .post('/auth/register')
         .send({
-            "email" : "saassda@gmail.com"
+            "email" : "1sa1a1ssda@gmail.com"
+        })
+        expect(register.status).toBe(400)
+    })
+
+    it('should throw an error due to bad input' , async () => {
+        const register = await request(app)
+        .post('/auth/register')
+        .send({
+            "email" : "1sa1as1sda@gmail.com",
+            "password" : "1234"
         })
         expect(register.status).toBe(400)
     })

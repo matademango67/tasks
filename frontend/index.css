@@ -1,58 +1,339 @@
-
-h1{
-   font-size: 60px;
-    color: rgb(232 255 1);
-    display: flex;
-    justify-content: center;
-}
-
-h2{
-    font-size: 50px;
-    color: white;
-}
-
-.Show-tasks{
-    display: flex;
+/* Global styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #11acf3;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.buttons{
-  display: flex;
-  gap: 12px;
+/* Section visibility control */
+.section-active {
+    display: flex;
+    animation: fadeIn 0.3s ease-in;
 }
 
+.section-hidden {
+    display: none;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* ============ LOGIN & REGISTER SECTIONS ============ */
+#register-section,
+#login-section {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Auth card container */
+.auth-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    padding: 50px 40px;
+    width: 100%;
+    max-width: 400px;
+    animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Auth title and subtitle */
+.auth-title {
+    font-size: 32px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.auth-subtitle {
+    font-size: 14px;
+    color: #999;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Auth form */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Form group (input + label) */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-group input {
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Error message */
+.error-message {
+    color: #e53935;
+    font-size: 13px;
+    font-weight: 500;
+    min-height: 20px;
+    animation: shake 0.3s ease;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+/* Auth footer text with link */
+.auth-footer {
+    font-size: 12px;
+    color: #bbb;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.auth-link {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.auth-link:hover {
+    color: #764ba2;
+    text-decoration: underline;
+}
+
+/* ============ BUTTONS ============ */
 .btn {
-  padding: 12px 22px;
-  border: none;
-  border-radius: 8px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.25s ease;
-  color: white;
-}
-
-.btn-create{
-  background: #2196F3;
-}
-
-.btn-update{
-  background: #FF9800
-}
-.btn-delete{
-  background: #E53935
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    color: white;
+    font-family: inherit;
 }
 
 .btn:hover {
-  transform: scale(1.05);
-  filter: brightness(1.15);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Click animation */
 .btn:active {
-  transform: scale(0.97);
+    transform: translateY(0);
+}
+
+/* Auth button (register/login) */
+.btn-auth {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-size: 16px;
+    padding: 14px;
+    font-weight: 700;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.btn-auth:hover {
+    filter: brightness(1.1);
+}
+
+/* ============ TASKS SECTION ============ */
+#tasks-section {
+    width: 100%;
+    min-height: 100vh;
+    padding: 30px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Tasks header with logout button */
+.tasks-header {
+    max-width: 1000px;
+    margin: 0 auto 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.tasks-header h1 {
+    font-size: 36px;
+    color: white;
+    font-weight: 700;
+}
+
+/* Logout button */
+.btn-logout {
+    background: #e53935;
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+.btn-logout:hover {
+    background: #c62828;
+}
+
+/* Tasks container */
+.show-tasks {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.show-tasks h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Task list */
+#task-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#task-list li {
+    padding: 15px;
+    background: #f5f5f5;
+    border-left: 4px solid #667eea;
+    border-radius: 4px;
+    font-size: 15px;
+    color: #333;
+    line-height: 1.6;
+}
+
+#task-list li:hover {
+    background: #efefef;
+}
+
+/* Action buttons */
+.buttons {
+    display: flex;
+    gap: 15px;
+    max-width: 1000px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn-create {
+    background: #2196F3;
+}
+
+.btn-create:hover {
+    background: #1976D2;
+}
+
+.btn-update {
+    background: #FF9800;
+}
+
+.btn-update:hover {
+    background: #F57C00;
+}
+
+.btn-delete {
+    background: #E53935;
+}
+
+.btn-delete:hover {
+    background: #C62828;
+}
+
+/* ============ RESPONSIVE DESIGN ============ */
+@media (max-width: 600px) {
+    .login-card {
+        padding: 30px 20px;
+    }
+
+    .login-title {
+        font-size: 24px;
+    }
+
+    .tasks-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .tasks-header h1 {
+        font-size: 24px;
+    }
+
+    .btn-logout {
+        width: 100%;
+    }
+
+    .buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
 }
